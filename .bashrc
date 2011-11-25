@@ -44,7 +44,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# prompt from Rawcky
+# prompt from rawcky
 function __git_ps1 ()
 {
     local b="$(git symbolic-ref HEAD 2>/dev/null)";
@@ -53,5 +53,6 @@ function __git_ps1 ()
     fi
 }
 
-PS1="\[$RED[\u] $CYAN\w$YELLOW \$(__git_ps1)$WHITE\$\] "
+PS1="\[$YELLOW\]\[$RED\][\u] \[$CYAN\]\w \[$YELLOW\]\$(__git_ps1)\[$WHITE\]\$ "
+
 
