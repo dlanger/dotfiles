@@ -1,0 +1,25 @@
+vbell off
+startup_message off
+bindkey -k F1 prev
+bindkey -k F2 next
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %l %{..Y} %m/%d %C%a "
+
+defscrollback 10000
+
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I"
+
+# tell screen how to set colors. AB = background, AF=foreground
+termcapinfo mlterm 'Co#256:AB=E[48;5;%dm:AF=E[38;5;%dm'
+
+# erase background with current bg color
+defbce "on"
+
+# Automatically start up a bunch of windows.
+screen -t "shell" 
+screen -t "celery" ./manage.py celeryd --loglevel=INFO
+screen -t "django" ./manage.py runserver 0.0.0.0:8000 
+screen -t "ipython" ./manage.py shell
