@@ -15,6 +15,7 @@ export PROMPT_COMMAND='history -a'
 export PYTHONPATH=$HOME/bin:$PYTHONPATH
 export WORKON_HOME=$HOME/.virtualenvs
 export PIP_RESPECT_VIRTUALENV=true
+export WAVE_HOME=$HOME/Projects/waveaccounting/
 
 export WHITE='\e[0;0m'
 export BLACK='\e[0;30m'

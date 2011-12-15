@@ -18,8 +18,11 @@ termcapinfo mlterm 'Co#256:AB=E[48;5;%dm:AF=E[38;5;%dm'
 # erase background with current bg color
 defbce "on"
 
+# in a window with a terminated process, k closes and r restarts the process
+zombie kr
+
 # Automatically start up a bunch of windows.
 screen -t "shell" 
-screen -t "celery" ./manage.py celeryd --loglevel=INFO
-screen -t "django" ./manage.py runserver 0.0.0.0:8000 
+screen -t "celery" ./manage.py celeryd --loglevel=DEBUG
+screen -t "django" ./manage.py runserver 0.0.0.0:8000
 screen -t "ipython" ./manage.py shell
