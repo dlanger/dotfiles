@@ -1,0 +1,12 @@
+[user]
+	name = Dan Langer
+	email = dan@waveaccounting.com
+[push]
+	default = tracking
+[core]
+	excludefile = /home/dan/dotfiles/.gitignore
+	excludesfile = /home/dan/dotfiles/.gitignore
+[alias]
+	co = checkout
+[color]
+	ui = auto

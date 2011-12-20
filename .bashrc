@@ -45,6 +45,11 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f ~/.bash_fcns ]; then
+    source ~/.bash_fcns
+fi
+
+
 # prompt from rawcky
 function __git_ps1 ()
 {
