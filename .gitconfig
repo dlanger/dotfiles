@@ -2,11 +2,15 @@
 	name = Dan Langer
 	email = dan@waveaccounting.com
 [push]
-	default = tracking
+	default = current
+	# default = tracking
 [core]
 	excludefile = /home/dan/dotfiles/.gitignore
 	excludesfile = /home/dan/dotfiles/.gitignore
 [alias]
 	co = checkout
+ 	ag = "!sh -c 'git ls-files -m -o --exclude-standard | grep $1 | xargs -r git add' -"
+	ci = commit
 [color]
 	ui = auto
+

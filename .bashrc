@@ -37,6 +37,14 @@ export NO_COLOR='\e[0m'
 
 source /usr/local/bin/virtualenvwrapper.sh
 
+function __git_ps1 ()
+{   
+    local b="$(git symbolic-ref HEAD 2>/dev/null)";
+    if [ -n "$b" ]; then
+        printf " (%s)" "${b##refs/heads/}";
+    fi
+}
+
 if [ -f /etc/bash_completion ]; then
  . /etc/bash_completion
 fi
@@ -48,16 +56,6 @@ fi
 if [ -f ~/.bash_fcns ]; then
     source ~/.bash_fcns
 fi
-
-
-# prompt from rawcky
-function __git_ps1 ()
-{
-    local b="$(git symbolic-ref HEAD 2>/dev/null)";
-    if [ -n "$b" ]; then
-        printf " (%s)" "${b##refs/heads/}";
-    fi
-}
 
 PS1="\[$YELLOW\]\[$RED\][\u] \[$CYAN\]\w \[$YELLOW\]\$(__git_ps1)\[$WHITE\]\$ "
 

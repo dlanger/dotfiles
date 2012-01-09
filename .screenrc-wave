@@ -25,4 +25,4 @@ zombie kr
 screen -t "shell" 
 screen -t "celery" ./manage.py celeryd --loglevel=DEBUG
 screen -t "django" ./manage.py runserver 0.0.0.0:8000
-screen -t "ipython" ./manage.py shell
+screen -t "ipython" ./manage.py shell_plus

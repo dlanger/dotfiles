@@ -2,3 +2,4 @@ function mig() {
     ~/Projects/waveaccounting/waveaccounting/manage.py schemamigration "$@" --auto;
     ~/Projects/waveaccounting/waveaccounting/manage.py migrate "$@";
 }
+
