@@ -15,9 +15,12 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 alias k9='kill -9'
-# Don't forget to update /etc/bash_completion.d/git to support it
-alias g='git'
+
+# git-specific
+alias g='git' # Don't forget to update /etc/bash_completion.d/git to support it
 alias gst='git status'
+alias gd='git diff --stat --color' # gd develop..feature-branch_
+alias gpr='git pull --rebase'
 
 alias ls='ls -G --color=auto'   # colourized output TODO linux needs --color
 alias la='ls -Al --color=auto'  # show hidden files
@@ -27,10 +30,6 @@ alias lk='ls -lSr --color=auto' # sort by size
 alias lt='ls -ltr --color=auto' # sort by date
 alias lc='ls -lcr --color=auto' # sort by change time
 alias lr='ls -lR --color=auto'  # recursive list
-
-# git - use as _gd develop..feature-branch_
-alias gd='git diff --stat --color'
-alias gpr='git pull --rebase'
 
 # wave-specific
 alias ww='workon wave'
