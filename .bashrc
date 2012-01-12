@@ -16,6 +16,7 @@ export PYTHONPATH=$HOME/bin:$PYTHONPATH
 export WORKON_HOME=$HOME/.virtualenvs
 export PIP_RESPECT_VIRTUALENV=true
 export WAVE_HOME=$HOME/Projects/waveaccounting/
+export DJANGO_COLORS='dark'
 
 export WHITE='\e[0;0m'
 export BLACK='\e[0;30m'
@@ -46,11 +47,15 @@ function __git_ps1 ()
 }
 
 if [ -f /etc/bash_completion ]; then
- . /etc/bash_completion
+    . /etc/bash_completion
 fi
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+if [ -f ~/dotfiles/django_bash_completion ]; then
+    . ~/dotfiles/django_bash_completion
 fi
 
 if [ -f ~/.bash_fcns ]; then

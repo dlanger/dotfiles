@@ -27,4 +27,4 @@ screen -t "cel" ./manage.py celeryd --loglevel=DEBUG
 screen -t "dj" ./manage.py runserver 0.0.0.0:8000
 screen -t "ipy" ./manage.py shell_plus
 screen -t "dj-log" tail -f ../logs/django.log 
-screen -t "redis" redis-server 
+#screen -t "redis" redis-server 
