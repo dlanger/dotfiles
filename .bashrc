@@ -54,14 +54,14 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-if [ -f ~/dotfiles/django_bash_completion ]; then
-    . ~/dotfiles/django_bash_completion
-fi
+#if [ -f ~/dotfiles/django_bash_completion ]; then
+#    . ~/dotfiles/django_bash_completion
+#fi
 
 if [ -f ~/.bash_fcns ]; then
     source ~/.bash_fcns
 fi
 
-PS1="\[$YELLOW\]\[$RED\][\u] \[$CYAN\]\w \[$YELLOW\]\$(__git_ps1)\[$WHITE\]\$ "
+PS1="\[$YELLOW\]\[$RED\][\u] \[$CYAN\]\w\[$YELLOW\]\$(__git_ps1)\[$WHITE\] \$ "
 
 

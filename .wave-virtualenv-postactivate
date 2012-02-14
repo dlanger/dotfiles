@@ -1,2 +1,2 @@
 cd ~/Projects/waveaccounting/waveaccounting
-screen -S wave-dl -c ~/.screenrc-wave -d -R
+screen -S wave-dl -c ~/.screenrc-wave -dRR
