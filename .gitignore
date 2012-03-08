@@ -3,5 +3,7 @@
 .pydevproject
 .idea/
 ssh-config
+.ropeproject
+local_settings.py
 
 

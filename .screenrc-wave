@@ -24,8 +24,8 @@ zombie kr
 # Automatically start up a bunch of windows.
 screen -t "shell" 
 screen -t "celery" ./manage.py celeryd --loglevel=DEBUG
+screen -t "celery-ce" ./manage.py celeryd -Q high_priority --loglevel=DEBUG
 screen -t "django" ./manage.py runserver_plus 0.0.0.0:8000
 screen -t "ipython" ./manage.py shell_plus
 screen -t "django-log" tail -f ../logs/django.log 
-screen -t "celery-ce" ./manage.py celeryd -Q high_priority --loglevel=DEBUG
 #screen -t "redis" redis-server 
