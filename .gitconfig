@@ -11,6 +11,7 @@
 	co = checkout
  	ag = "!sh -c 'git ls-files -m -o --exclude-standard | grep $1 | xargs -r git add' -"
 	ci = commit
+	meld = "!/home/dan/dotfiles/git-meld.pl"
+	br = branch
 [color]
 	ui = auto
-
