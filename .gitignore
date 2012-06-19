@@ -5,5 +5,7 @@
 ssh-config
 .ropeproject
 local_settings.py
+.coverage
+cover*
 
 

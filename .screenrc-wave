@@ -18,16 +18,19 @@ termcapinfo mlterm 'Co#256:AB=E[48;5;%dm:AF=E[38;5;%dm'
 # erase background with current bg color
 defbce "on"
 
+# start at 1
+bind c screen 1
+bind 0 select 10                                                            
+
 # in a window with a terminated process, k closes and r restarts the process
 zombie kr
 
 # Automatically start up a bunch of windows.
-screen -t "shell" 
-screen -t "celery" ./manage.py celeryd -l DEBUG -E
-screen -t "celery-hp" ./manage.py celeryd -Q high_priority -l DEBUG -B -E
-#screen -t "django" ./manage.py runserver 0.0.0.0:8000
-screen -t "django" ./manage.py runserver_plus 0.0.0.0:8000
-screen -t "ipython" ./manage.py shell_plus
-screen -t "django-log" tail -f ../logs/django.log 
-screen -t "celeryev" ./manage.py celeryev
-#screen -t "redis" redis-server 
+screen -t "shell" 1
+screen -t "celery" 2 ./manage.py celeryd -l DEBUG -E --autoreload 
+screen -t "celery-hp" 3 ./manage.py celeryd -Q high_priority -l DEBUG -E --autoreload
+screen -t "django" 4 ./manage.py runserver_plus 0.0.0.0:8000 --insecure
+screen -t "ipython" 5 ./manage.py shell_plus
+screen -t "django-log" 6 tail -f ../logs/django.log 
+screen -t "celeryev" 7 ./manage.py celeryev
+#screen -t "redis" 8 redis-server 

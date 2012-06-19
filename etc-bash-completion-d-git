@@ -2258,6 +2258,7 @@ _git ()
 	submodule)   _git_submodule ;;
 	svn)         _git_svn ;;
 	tag)         _git_tag ;;
+	flow)        _git_flow ;;
 	whatchanged) _git_log ;;
 	*)           COMPREPLY=() ;;
 	esac
