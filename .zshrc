@@ -21,7 +21,7 @@ ZSH_THEME="dlanger"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
@@ -29,12 +29,20 @@ ZSH_THEME="dlanger"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git command-not-found django python git github pip)
+plugins=(git command-not-found python git github pip virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+# tmux
+export EDITOR=geany
+
+# hack so tmux uses $TERM='screen' --> CentOS doesn't support screen-256
+if [ -n "$TMUX" ]; then
+    export TERM='screen'
+fi
 
 alias k9='kill -9'
 alias sr='screen -r -d'
@@ -66,9 +74,17 @@ export WAVE_HOME=$HOME/Projects/waveaccounting/
 export DJANGO_COLORS='dark'
 
 # virtualenvwrapper
-source /usr/local/bin/virtualenvwrapper.sh
+#source /usr/local/bin/virtualenvwrapper.sh
 
-# WA functions
+# seahorse key manager
+export $(gnome-keyring-daemon --daemonize --start)
+
+# wa
+alias runcel='./manage.py celeryd -Q celery,high_priority -l DEBUG'
+alias runsrv='./manage.py runsever_plus 0.0.0.0:8000'
+alias pyc='pyclean . && python ~/Projects/waveaccounting/waveaccounting/manage.py clean_pyc'
+
+# wa functions
 function mig() {
     ~/Projects/waveaccounting/waveaccounting/manage.py schemamigration "$@" --auto;
     ~/Projects/waveaccounting/waveaccounting/manage.py migrate "$@";
