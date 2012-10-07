@@ -1,0 +1,33 @@
+alias k9='kill -9'
+alias sr='screen -r -d'
+alias nup='ping -c 1 google.ca'
+alias ge='geany'
+alias sge='sudo geany'
+
+# ack
+alias ack='ack-grep'
+alias acp='ack-grep --python --ignore-dir=migrations'
+alias acj='ack-grep --js --ignore-dir=sitestatic'
+
+# filesystem
+alias ~~='cd ~'
+alias cp='cp -i'
+alias mv='mv -i'
+alias ls='ls -G --color=yes' 
+alias la='ls -Al --color=yes'
+alias ll='ls -lh --color=yes'
+
+# git
+alias gst='git status'
+alias gd='git diff --stat --color' # gd develop..feature-branch_
+alias gpr='git pull --rebase'
+
+# wa
+alias runcel='./manage.py celeryd -Q celery,high_priority -l DEBUG'
+alias runsrv='./manage.py runsever_plus 0.0.0.0:8000'
+alias pyc='find . -iname "*.pyc" -exec rm -f {} \;'
+alias rdb='export REUSE_DB=1'
+alias drdb='export REUSE_DB=0'
+alias rt='REUSE_DB=1 ./manage.py test -s --with-progressive -aunit -aintegration'
+alias nrt='REUSE_DB=0 ./manage.py test -s --with-progressive -aunit -aintegration'
+alias mwave='./manage.py migrate_wave && ./manage.py migrate_wave --shardgroup=income_expense__shards && ./manage.py migrate_wave --shardgroup=bookkeeping__shards'

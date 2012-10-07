@@ -44,27 +44,6 @@ if [ -n "$TMUX" ]; then
     export TERM='screen'
 fi
 
-alias k9='kill -9'
-alias sr='screen -r -d'
-alias nup='ping -c 1 google.ca'
-
-# ack
-alias ack='ack-grep'
-alias acp='ack-grep --python --ignore-dir=migrations'
-alias acj='ack-grep --js --ignore-dir=sitestatic'
-
-# filesystem
-alias ~~='cd ~'
-alias cp='cp -i'
-alias mv='mv -i'
-alias ls='ls -G --color=yes' 
-alias la='ls -Al --color=yes'
-alias ll='ls -lh --color=yes'
-
-# git
-alias gst='git status'
-alias gd='git diff --stat --color' # gd develop..feature-branch_
-alias gpr='git pull --rebase'
 
 # envs
 export PYTHONPATH=$HOME/bin:$PYTHONPATH
@@ -80,22 +59,6 @@ export GITHUB_USERNAME='dlanger'
 
 # seahorse key manager
 export $(gnome-keyring-daemon --daemonize --start)
-
-# wa
-alias runcel='./manage.py celeryd -Q celery,high_priority -l DEBUG'
-alias runsrv='./manage.py runsever_plus 0.0.0.0:8000'
-alias pyc='find . -iname "*.pyc" -exec rm -f {} \;'
-alias rdb='export REUSE_DB=1'
-alias drdb='export REUSE_DB=0'
-alias tt='REUSE_DB=1 ./manage.py test -s --with-progressive -aunit -aintegration'
-alias t='REUSE_DB=0 ./manage.py test -s --with-progressive -aunit -aintegration'
-
-
-# wa functions
-function mig() {
-    ~/Projects/waveaccounting/waveaccounting/manage.py schemamigration "$@" --auto;
-    ~/Projects/waveaccounting/waveaccounting/manage.py migrate "$@";
-}
 
 function cvr() {
     ./manage.py test "$@" -aunit -aintegration --with-coverage --cover-package="$@" --cover-html --cover-erase;
