@@ -18,7 +18,7 @@ alias la='ls -Al --color=yes'
 alias ll='ls -lh --color=yes'
 
 # git
-alias gst='git status'
+alias gst='git status -sb'
 alias gd='git diff --stat --color' # gd develop..feature-branch_
 alias gpr='git pull --rebase'
 
@@ -26,8 +26,10 @@ alias gpr='git pull --rebase'
 alias runcel='./manage.py celeryd -Q celery,high_priority -l DEBUG'
 alias runsrv='./manage.py runsever_plus 0.0.0.0:8000'
 alias pyc='find . -iname "*.pyc" -exec rm -f {} \;'
-alias rdb='export REUSE_DB=1'
-alias drdb='export REUSE_DB=0'
-alias rt='REUSE_DB=1 ./manage.py test -s --with-progressive -aunit -aintegration'
-alias nrt='REUSE_DB=0 ./manage.py test -s --with-progressive -aunit -aintegration'
+
+alias nrt='REUSE_DB=0 ./manage.py test --with-progressive -aunit -aintegration --noinput --settings=qa_utils.testing_settings --with-id'
+alias rts='rt -s'
+alias nrts='nrt -s'
+alias jenk='./manage.py test -aunit -aintegration --noinput --settings=qa_utils.testing_settings -v2'
+
 alias mwave='./manage.py migrate_wave && ./manage.py migrate_wave --shardgroup=income_expense__shards && ./manage.py migrate_wave --shardgroup=bookkeeping__shards'

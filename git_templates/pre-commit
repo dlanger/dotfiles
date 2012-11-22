@@ -1,0 +1,48 @@
+#!/bin/sh
+
+flake8=$(which flake8)
+grep=$(which grep)
+
+if [ -z "$flake8" ]; then
+    $echo "You must install flake8; sudo pip install flake8"
+    exit 1
+fi
+
+FILES="git diff --cached --name-only --diff-filter=ACM"
+RETVAL=0
+
+PYTHON_FILES=$($FILES | grep -e .py$)
+JS_FILES=$($FILES | grep -e .js$)
+
+# Run flake8 over all staged python files
+if [ -n "$PYTHON_FILES" ]; then
+    printf "\e[32mChecking Python files for flake8 violations\n\033[0m"
+    $flake8 --ignore=E501 $PYTHON_FILES
+    REVAL=$?
+fi
+
+# Check for ipdb and pdb imports/usage
+if [ -n "$PYTHON_FILES" ]; then
+    printf "\e[32mChecking files for pdb violations\n\033[0m"
+    $grep --exclude=\*pre-commit -n -E "import.*i?pdb|i?pdb\." $PYTHON_FILES || RETVAL=1
+fi
+
+# Check for print statements
+if [ -n "$PYTHON_FILES" ]; then
+    printf "\e[32mChecking files for print violations\n\033[0m"
+    $grep --exclude=\*migrations\*,\*management/commands\*,\*manage.py,\*scripts\*,\*settings.py -n -E -v "^#" $PYTHON_FILES | grep -E "print[\"' ]+" || RETVAL=1
+fi
+
+# Check for console.log
+if [ -n "$JS_FILES" ]; then
+    printf "\e[32mChecking Javascript files for console.log\n\033[0m"
+    $grep --exclude=\*yipit/\*.js -n -E "console.log" $JS_FILES || RETVAL=1
+fi
+
+# Check for debugger
+if [ -n "$JS_FILES" ]; then
+    printf "\e[32mChecking Javascript files for debugger\n\033[0m"
+    $grep -n -E "debugger" $JS_FILES || RETVAL=1
+fi
+
+exit $REVAL

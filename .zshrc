@@ -44,6 +44,8 @@ if [ -n "$TMUX" ]; then
     export TERM='screen'
 fi
 
+# aliases
+source ~/.aliases
 
 # envs
 export PYTHONPATH=$HOME/bin:$PYTHONPATH
