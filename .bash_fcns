@@ -1,9 +1,8 @@
-function mig() {
-    ~/Projects/waveaccounting/waveaccounting/manage.py schemamigration "$@" --auto;
-    ~/Projects/waveaccounting/waveaccounting/manage.py migrate "$@";
+function cvr() {
+    ./manage.py test "$@" --noinput -aunit -aintegration --with-coverage --cover-package="$@" --cover-html --cover-erase --settings=qa_utils.in_memory_test_settings --noinput;
 }
 
-function cvr() {
-    ./manage.py test "$@" -aunit -aintegration --with-coverage --cover-package="$@" --cover-html --cover-erase --settings=quick_testing_settings;
-}
+
+function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; }
+
 

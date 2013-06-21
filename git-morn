@@ -1,0 +1,1 @@
+git for-each-ref --sort=-committerdate --shell --format="echo %(refname:short) by %(authorname) && git log -n 1 --format=format:\"  %%cd%%n  %%B\" %(refname)" refs/heads/ | sh | less -R
