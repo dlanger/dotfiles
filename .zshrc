@@ -29,51 +29,62 @@ DISABLE_AUTO_TITLE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git command-not-found python pip virtualenvwrapper zsh-syntax-highlighting)
+plugins=(git command-not-found python pip colorize virtualenvwrapper aws zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
-
 # Customize to your needs...
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/dan/bin:/usr/local/node/bin:/opt/packer
+
+# goland
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=/home/dan/Projects/go
 
 # tmux
 export EDITOR=geany
 
 # hack so tmux uses $TERM='screen' --> CentOS doesn't support screen-256
-if [ -n "$TMUX" ]; then
-    export TERM='screen'
-fi
+#if [ -n "$TMUX" ]; then
+#    export TERM='screen'
+#fi
+
+export TERM='xterm'
+
+# ctrl-left and ctrl-right should work correctly
+bindkey '5D' emacs-backward-word
+bindkey '5C' emacs-forward-word
 
 # aliases
 source ~/.aliases
 
 # envs
 export PYTHONPATH=$HOME/bin:$PYTHONPATH
-export WORKON_HOME=$HOME/.virtualenvs
+export WORKON_HOME=/analysis/.virtualenvs
 export PIP_RESPECT_VIRTUALENV=true
-export WAVE_HOME=$HOME/Projects/waveaccounting/
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export DJANGO_COLORS='dark'
 export VMFARMS_SSH_USER='dlanger'
 export GITHUB_USERNAME='dlanger'
+export VIRTUALENV_DISTRIBUTE=true
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--python=/usr/local/python2.7.6/bin/python"
+
 
 # virtualenvwrapper
-#source /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
 
 # seahorse key manager
-export $(gnome-keyring-daemon --daemonize --start)
+# export $(gnome-keyring-daemon --daemonize --start)
+
+# pip cache
+export PIP_DOWNLOAD_CACHE=/analysis/.pip_download_cache
 
 function cvr() {
-    ./manage.py test "$@" -aunit -aintegration --with-coverage --cover-package="$@" --cover-html --cover-erase;
+    ./manage.py test "$@" -aweb -aunit -aintegration --with-coverage --cover-package="$@" --cover-html --cover-erase --noinput;
 }
 
-# rvm
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-# perl
-export PERL_LOCAL_LIB_ROOT="/home/dan/perl5";
-export PERL_MB_OPT="--install_base /home/dan/perl5";
-export PERL_MM_OPT="INSTALL_BASE=/home/dan/perl5";
-export PERL5LIB="/home/dan/perl5/lib/perl5/x86_64-linux-gnu-thread-multi:/home/dan/perl5/lib/perl5";
-export PATH="/home/dan/perl5/bin:$PATH";
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 

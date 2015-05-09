@@ -13,6 +13,7 @@
 	ci = commit
 	meld = "!/home/dan/dotfiles/git-meld.pl"
 	br = branch
+	brr = "!~/dotfiles/git-brr"
 [color]
 	ui = auto
 [init]

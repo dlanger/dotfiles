@@ -9,6 +9,10 @@ alias ack='ack-grep'
 alias acp='ack-grep --python --ignore-dir=migrations'
 alias acj='ack-grep --js --ignore-dir=sitestatic'
 
+# killing in the name of
+alias kcharm='ps aux | grep charm | awk -F " " '\''{print $(2)}'\'' | xargs kill -9'
+alias kvbox='killall VBoxClient && VBoxClient-all'
+
 # filesystem
 alias ~~='cd ~'
 alias cp='cp -i'
@@ -23,17 +27,16 @@ alias gd='git diff --stat --color' # gd develop..feature-branch_
 alias gpr='git pull --rebase'
 alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
-
 # wa
-alias runcel='./manage.py celeryd -Q celery,high_priority -l DEBUG'
-alias runsrv='./manage.py runsever_plus 0.0.0.0:8000'
-alias pyc='find . -iname "*.pyc" -exec rm -f {} \;'
+alias pyc='find . -iname "*.pyc" -delete'
+alias cs='rm -rf sitestatic && ./manage.py collectstatic --noinput -v0 && echo "[✓] collectstatic"'
+alias msp='./manage.py shell_plus'
+alias fs='foreman start'
 
-alias mpt='./manage.py test -aunit -aintegration --settings=qa_utils.in_memory_test_settings --processes=4 --process-timeout=90 --noinput'
+alias mpt='./manage.py test -aunit -aintegration --settings=qa_utils.in_memory_test_settings --processes=4 --process-timeout=300 --noinput'
 alias slowt='./manage.py test -aunit -aintegration -aweb --settings=qa_utils.testing_settings --noinput --with-progressive'
 alias spt='./manage.py test -aunit -aintegration --settings=qa_utils.in_memory_test_settings --noinput'
 alias prt='./manage.py test -aunit -aintegration --settings=qa_utils.in_memory_test_settings --noinput --with-progressive --with-id'
 alias timet='./manage.py test -aunit -aintegration --noinput --settings=qa_utils.in_memory_test_settings --with-timer'
-alias mpts='mpt -s'
 
 alias mwave='./manage.py migrate_wave && ./manage.py migrate_wave --shardgroup=income_expense__shards && ./manage.py migrate_wave --shardgroup=bookkeeping__shards'
